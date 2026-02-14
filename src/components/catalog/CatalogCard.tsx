@@ -126,12 +126,14 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
               loading="lazy"
               onError={() => setImageError(true)}
             />
-            <span
-              className="absolute top-2 left-2 text-xs font-bold uppercase px-2 py-1 rounded z-10"
-              style={{ backgroundColor: '#F2C200', color: '#0F0F0F' }}
-            >
-              {product.category}
-            </span>
+            {(product.category || (product as any).categoria || (product as any).category_name) && (
+              <span
+                className="absolute top-[10px] left-[10px] text-[11px] font-bold uppercase px-2.5 py-1 rounded-full z-10"
+                style={{ backgroundColor: 'rgba(242, 194, 0, 0.92)', color: '#0F0F0F' }}
+              >
+                {product.category || (product as any).categoria || (product as any).category_name}
+              </span>
+            )}
             {hasMultipleImages && (
               <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
                 +{allImages.length - 1} fotos
