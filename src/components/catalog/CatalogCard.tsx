@@ -13,7 +13,7 @@ interface CatalogCardProps {
 const PLACEHOLDER_IMAGE = "/placeholder.svg";
 const WHATSAPP_NUMBER = "5589994651266";
 
-const parseSizes = (sizes: string | undefined): string[] => {
+const parseSizes = (sizes: string | null | undefined): string[] => {
   if (!sizes || sizes.trim() === "") return [];
   return sizes.split(",").map((s) => s.trim()).filter((s) => s !== "");
 };
@@ -26,7 +26,7 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
   // Touch/swipe handling
   const touchStartX = useRef<number | null>(null);
 
-  const sizes = parseSizes(product.variacoes);
+  const sizes = parseSizes(product.sizes);
   const hasSizes = sizes.length > 0;
   const isButtonEnabled = !hasSizes || selectedSize !== null;
 
@@ -50,7 +50,7 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
     if (hasSizes && !selectedSize) return;
 
     const sizeText = selectedSize ? ` - Tamanho ${selectedSize}` : "";
-    const message = `Tenho interesse no produto ${product.nome}${sizeText}`;
+    const message = `Tenho interesse no produto ${product.name}${sizeText}`;
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };
@@ -121,14 +121,17 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
           <div className="aspect-[4/3] overflow-hidden rounded-t-xl sm:rounded-t-2xl cursor-pointer relative">
             <img
               src={imageError ? PLACEHOLDER_IMAGE : imageUrl}
-              alt={`Foto do produto ${product.nome}`}
+              alt={`Foto do produto ${product.name}`}
               className="w-full h-full object-cover"
               loading="lazy"
               onError={() => setImageError(true)}
             />
-            <Badge variant="secondary" className="absolute top-2 left-2 text-xs bg-background/80 backdrop-blur-sm text-black">
-              {product.categoria}
-            </Badge>
+            <span
+              className="absolute top-2 left-2 text-xs font-bold uppercase px-2 py-1 rounded z-10"
+              style={{ backgroundColor: '#F2C200', color: '#0F0F0F' }}
+            >
+              {product.category}
+            </span>
             {hasMultipleImages && (
               <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
                 +{allImages.length - 1} fotos
@@ -138,7 +141,7 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
         </DialogTrigger>
         <DialogContent className="max-w-[95vw] sm:max-w-4xl w-full p-0 overflow-hidden rounded-xl sm:rounded-2xl bg-black">
           <VisuallyHidden>
-            <DialogTitle>{product.nome}</DialogTitle>
+            <DialogTitle>{product.name}</DialogTitle>
           </VisuallyHidden>
           <div className="relative">
             {/* Simple Image Display with swipe support */}
@@ -152,7 +155,7 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
             >
               <img
                 src={allImages[currentImageIndex] || PLACEHOLDER_IMAGE}
-                alt={`Foto ${currentImageIndex + 1} do produto ${product.nome}`}
+                alt={`Foto ${currentImageIndex + 1} do produto ${product.name}`}
                 className="w-full h-full object-contain pointer-events-none"
                 draggable={false}
               />
@@ -208,24 +211,32 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
 
             {/* Product Info Overlay */}
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6 pt-16">
-              <Badge className="mb-2">{product.categoria}</Badge>
-              <h3 className="text-white text-base sm:text-xl font-semibold">{product.nome}</h3>
-              {product.preco && <p className="text-white/90 text-sm sm:text-lg font-bold">R$ {product.preco.toFixed(2)}</p>}
-              {product.descricao && <p className="text-white/70 text-xs sm:text-sm mt-1">{product.descricao}</p>}
-              {product.variacoes && <p className="text-white/60 text-xs sm:text-sm mt-1">Tamanhos: {product.variacoes}</p>}
+              <Badge className="mb-2">{product.category}</Badge>
+              <h3 className="text-white text-base sm:text-xl font-semibold">{product.name}</h3>
+              <p className="text-white/90 text-sm sm:text-lg font-bold" style={{ display: product.price ? undefined : 'none' }}>
+                {product.price ? `R$ ${product.price.toFixed(2)}` : ''}
+              </p>
+              <p className="text-white/70 text-xs sm:text-sm mt-1" style={{ display: product.description ? undefined : 'none' }}>
+                {product.description ?? ''}
+              </p>
+              <p className="text-white/60 text-xs sm:text-sm mt-1" style={{ display: product.sizes ? undefined : 'none' }}>
+                {product.sizes ? `Tamanhos: ${product.sizes}` : ''}
+              </p>
             </div>
           </div>
         </DialogContent>
       </Dialog>
 
       <div className="p-3 sm:p-4">
-        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground line-clamp-2 mb-2" title={product.nome}>
-          {product.nome}
+        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground line-clamp-2 mb-2" title={product.name}>
+          {product.name}
         </h3>
-        {product.preco && <p className="text-primary font-bold text-sm sm:text-base mb-1">R$ {product.preco.toFixed(2)}</p>}
-        {product.descricao && (
-          <p className="text-muted-foreground text-xs sm:text-sm mb-3 line-clamp-2">{product.descricao}</p>
-        )}
+        <p className="text-primary font-bold text-sm sm:text-base mb-1" style={{ display: product.price ? undefined : 'none' }}>
+          {product.price ? `R$ ${product.price.toFixed(2)}` : ''}
+        </p>
+        <p className="text-muted-foreground text-xs sm:text-sm mb-3 line-clamp-2" style={{ display: product.description ? undefined : 'none' }}>
+          {product.description ?? ''}
+        </p>
 
         {hasSizes && (
           <div className="mb-3">

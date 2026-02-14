@@ -11,7 +11,7 @@ export const Products = () => {
 
   const destaques = data?.products?.slice(0, 4) || [];
 
-  const handleWhatsApp = (productName: string, price?: number) => {
+  const handleWhatsApp = (productName: string, price?: number | null) => {
     const priceText = price ? ` - R$ ${price.toFixed(2)}` : "";
     const message = `Olá, vim pelo site e gostaria de saber mais sobre ${productName}${priceText}`;
     window.open(`https://wa.me/5589994651266?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
@@ -64,7 +64,7 @@ export const Products = () => {
                   <div className="aspect-square overflow-hidden rounded-lg sm:rounded-xl">
                     <img
                       src={getImageUrl(produto)}
-                      alt={produto.nome}
+                      alt={produto.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
                       loading="lazy"
                       onError={(e) => {
@@ -75,16 +75,16 @@ export const Products = () => {
 
                   <div className="p-2 sm:p-4">
                     <h3 className="text-sm sm:text-lg font-black text-secondary mb-1 sm:mb-2 uppercase tracking-wide line-clamp-2">
-                      {produto.nome}
+                      {produto.name}
                     </h3>
-                    {produto.preco && (
+                    {produto.price && (
                       <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-4">
-                        R$ {produto.preco.toFixed(2)}
+                        R$ {produto.price.toFixed(2)}
                       </p>
                     )}
                     <Button
                       variant="hero"
-                      onClick={() => handleWhatsApp(produto.nome, produto.preco)}
+                      onClick={() => handleWhatsApp(produto.name, produto.price)}
                       className="w-full text-xs sm:text-sm text-center min-h-[40px] sm:min-h-[44px]"
                     >
                       CONFERIR
@@ -104,7 +104,7 @@ export const Products = () => {
                   <div className="aspect-square overflow-hidden">
                     <img
                       src={getImageUrl(produto)}
-                      alt={produto.nome}
+                      alt={produto.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
                       loading="lazy"
                       onError={(e) => {
@@ -115,16 +115,16 @@ export const Products = () => {
 
                   <div className="p-6">
                     <h3 className="text-xl font-black text-secondary mb-2 uppercase tracking-wide">
-                      {produto.nome}
+                      {produto.name}
                     </h3>
-                    {produto.preco && (
+                    {produto.price && (
                       <p className="text-muted-foreground mb-4">
-                        R$ {produto.preco.toFixed(2)}
+                        R$ {produto.price.toFixed(2)}
                       </p>
                     )}
                     <Button
                       variant="hero"
-                      onClick={() => handleWhatsApp(produto.nome, produto.preco)}
+                      onClick={() => handleWhatsApp(produto.name, produto.price)}
                       className="w-full text-sm text-center"
                     >
                       CONFERIR
