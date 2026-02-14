@@ -126,12 +126,7 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
               loading="lazy"
               onError={() => setImageError(true)}
             />
-            <span
-              className="absolute top-2 left-2 text-xs font-bold uppercase px-2 py-1 rounded z-10"
-              style={{ backgroundColor: '#F2C200', color: '#0F0F0F' }}
-            >
-              {product.category}
-            </span>
+            {/* Category badge removed from image overlay — now shown near the name */}
             {hasMultipleImages && (
               <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
                 +{allImages.length - 1} fotos
@@ -228,15 +223,29 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
       </Dialog>
 
       <div className="p-3 sm:p-4">
-        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground line-clamp-2 mb-2" title={product.name}>
+        {/* Category pill */}
+        {product.category && (
+          <span
+            className="inline-block text-[10px] font-bold uppercase mb-1.5 rounded-full"
+            style={{ backgroundColor: '#F2C200', color: '#0F0F0F', padding: '3px 10px' }}
+          >
+            {product.category}
+          </span>
+        )}
+        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-foreground line-clamp-2 mb-1" title={product.name}>
           {product.name}
         </h3>
-        <p className="text-primary font-bold text-sm sm:text-base mb-1" style={{ display: product.price ? undefined : 'none' }}>
-          {product.price ? `R$ ${product.price.toFixed(2)}` : ''}
-        </p>
-        <p className="text-muted-foreground text-xs sm:text-sm mb-3 line-clamp-2" style={{ display: product.description ? undefined : 'none' }}>
-          {product.description ?? ''}
-        </p>
+        {(() => {
+          const desc = product.description || (product as any).descricao || (product as any).desc || '';
+          return desc ? (
+            <p className="text-muted-foreground text-xs sm:text-sm mb-2 line-clamp-2">{desc}</p>
+          ) : null;
+        })()}
+        {product.price ? (
+          <p className="text-primary font-bold text-sm sm:text-base mb-3">
+            R$ {product.price.toFixed(2)}
+          </p>
+        ) : null}
 
         {hasSizes && (
           <div className="mb-3">
