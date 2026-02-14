@@ -17,9 +17,9 @@ interface CatalogResult {
 }
 
 // Check if a product has a specific size in its variacoes field
-function hasSize(variacoes: string | null, size: string): boolean {
-  if (!variacoes) return false;
-  const normalized = variacoes.replace(/[-/]/g, ",");
+function hasSize(sizes: string | null, size: string): boolean {
+  if (!sizes) return false;
+  const normalized = sizes.replace(/[-/]/g, ",");
   return normalized.split(",").map((s) => s.trim()).includes(size);
 }
 
@@ -38,7 +38,7 @@ async function fetchProducts(
 
   // Client-side size filtering fallback
   if (numeracao) {
-    products = products.filter((p) => hasSize(p.variacoes, numeracao));
+    products = products.filter((p) => hasSize(p.sizes, numeracao));
   }
 
   const totalCount = products.length;

@@ -41,12 +41,12 @@ export async function uploadFile(file: File): Promise<UploadResult> {
 // ── Products – Read ──────────────────────────────────────────
 export interface ProductItem {
   id: string;
-  nome: string;
-  preco: number;
+  name: string;
+  price: number | null;
   image_url: string;
-  categoria: string;
-  variacoes: string | null;
-  descricao: string | null;
+  category: string;
+  sizes: string | null;
+  description: string | null;
   extra_images: string[] | null;
   created_at: string | null;
 }
