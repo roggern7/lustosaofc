@@ -52,7 +52,7 @@ export const Footer = () => {
                 <img
                   src="/primelandingweb-logo.svg"
                   alt="Prime Landing Web"
-                  className="h-[4.5rem] w-auto shimmer"
+                  className="h-20 w-auto shimmer"
                   style={{ mixBlendMode: 'screen' }}
                 />
               </a>
