@@ -47,13 +47,14 @@ export const Footer = () => {
               <img
                 src="/primelandingweb-logo.svg"
                 alt="Prime Landing Web"
-                className="h-10 w-auto bg-transparent shimmer"
+                className="h-14 w-auto shimmer"
+                style={{ mixBlendMode: 'screen' }}
               />
               <a
                 href="https://instagram.com/primelandingweb"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-secondary-foreground/60 hover:text-primary transition-colors"
+                className="text-xs text-white hover:text-primary transition-colors"
               >
                 Desenvolvido por @primelandingweb
               </a>
