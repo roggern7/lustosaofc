@@ -8,12 +8,12 @@ export const Footer = () => {
   return (
     <section className="bg-secondary py-12 sm:py-20">
       <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white mb-4 sm:mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-secondary-foreground mb-4 sm:mb-6">
           PRONTO PARA
           <span className="block text-primary">ELEVAR O NÍVEL?</span>
         </h2>
 
-        <p className="text-base sm:text-xl text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
+        <p className="text-base sm:text-xl text-secondary-foreground/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
           Chuteiras de alta performance com a melhor qualidade do Piauí. Fale conosco agora e garanta o seu par!
         </p>
 
@@ -28,16 +28,35 @@ export const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/20 pt-6 sm:pt-8 mt-8 sm:mt-12">
-          <div className="flex flex-col gap-4 md:flex-row md:justify-between items-center text-white/70">
+        <div className="border-t border-secondary-foreground/20 pt-6 sm:pt-8 mt-8 sm:mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-secondary-foreground/70">
+            {/* Coluna 1 - Esquerda */}
             <div className="text-center md:text-left">
               <p className="text-xl sm:text-2xl font-black text-primary">LUSTOSA SPORTS</p>
               <p className="text-sm">Confiança, Qualidade e Preço Justo</p>
             </div>
 
-            <div className="text-xs sm:text-sm text-center md:text-right">
+            {/* Coluna 2 - Centro */}
+            <div className="text-xs sm:text-sm text-center">
               <p>📍 Picos, Piauí</p>
-              <p className="mt-1">© 2025 Lustosa Sports. Todos os direitos reservados.</p>
+              <p className="mt-1">© 2026 Lustosa Sports. Todos os direitos reservados.</p>
+            </div>
+
+            {/* Coluna 3 - Direita (Desenvolvedor) */}
+            <div className="flex flex-col items-center md:items-end gap-2">
+              <img
+                src="/primelandingweb-logo.svg"
+                alt="Prime Landing Web"
+                className="h-10 w-auto bg-transparent shimmer"
+              />
+              <a
+                href="https://instagram.com/primelandingweb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-secondary-foreground/60 hover:text-primary transition-colors"
+              >
+                Desenvolvido por @primelandingweb
+              </a>
             </div>
           </div>
         </div>
