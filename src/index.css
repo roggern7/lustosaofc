@@ -208,6 +208,19 @@ All colors MUST be HSL.
     background-size: 200% 100%;
     animation: shimmer 2s infinite;
   }
+
+  @keyframes logo-shimmer {
+    0%, 100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.5);
+    }
+  }
+
+  .animate-logo-shimmer {
+    animation: logo-shimmer 2.5s ease-in-out infinite;
+  }
 }
 
 /* Hide scrollbar for mobile horizontal scroll */
