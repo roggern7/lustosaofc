@@ -43,8 +43,8 @@ export const Footer = () => {
             </div>
 
             {/* Coluna 3 - Direita (Desenvolvedor) */}
-            <div className="flex flex-col items-center md:items-end gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="450 220 400 260" className="h-20 w-auto">
+            <div className="flex flex-col items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="450 220 400 260" className="h-[4.5rem] w-auto">
                 <defs>
                   <linearGradient id="shimmer-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="transparent">
