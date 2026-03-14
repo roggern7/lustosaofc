@@ -7,7 +7,7 @@ interface SizeFilterProps {
   onSizeSelect: (size: string | null) => void;
 }
 
-const SIZES = ["37", "38", "39", "40", "41", "42", "43", "44"];
+const SIZES = ["35", "36", "37", "38", "38.5", "39", "39.5", "40", "40.5", "41", "42", "43", "44"];
 
 export const SizeFilter = ({ selectedSize, onSizeSelect }: SizeFilterProps) => {
   return (
