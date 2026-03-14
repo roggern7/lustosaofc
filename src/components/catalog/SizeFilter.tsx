@@ -27,7 +27,7 @@ export const SizeFilter = ({ selectedSize, onSizeSelect }: SizeFilterProps) => {
         )}
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 gap-2 pb-2 sm:pb-0">
+      <div className="grid grid-cols-7 gap-2 pb-2 sm:pb-0">
         {SIZES.map((size) => (
           <Button
             key={size}
