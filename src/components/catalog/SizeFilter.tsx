@@ -27,14 +27,14 @@ export const SizeFilter = ({ selectedSize, onSizeSelect }: SizeFilterProps) => {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-2 pb-2 sm:pb-0">
+      <div className="grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 gap-2 pb-2 sm:pb-0">
         {SIZES.map((size) => (
           <Button
             key={size}
             variant={selectedSize === size ? "default" : "outline"}
             size="sm"
             onClick={() => onSizeSelect(selectedSize === size ? null : size)}
-            className="font-medium transition-all duration-200 active:scale-95 sm:hover:scale-105 min-h-[44px] min-w-[44px] px-3 whitespace-nowrap flex-shrink-0 text-sm"
+            className="w-full justify-center font-medium transition-all duration-200 active:scale-95 sm:hover:scale-105 min-h-[44px] px-2 sm:px-3 whitespace-nowrap text-sm"
           >
             {size}
           </Button>
