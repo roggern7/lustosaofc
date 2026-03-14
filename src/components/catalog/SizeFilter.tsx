@@ -27,7 +27,7 @@ export const SizeFilter = ({ selectedSize, onSizeSelect }: SizeFilterProps) => {
         )}
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap -mx-1 px-1 sm:mx-0 sm:px-0 scrollbar-hide">
+      <div className="flex flex-wrap gap-2 pb-2 sm:pb-0">
         {SIZES.map((size) => (
           <Button
             key={size}
