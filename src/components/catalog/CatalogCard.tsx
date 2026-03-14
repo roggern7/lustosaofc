@@ -248,9 +248,9 @@ export const CatalogCard = ({ product, index }: CatalogCardProps) => {
                 <button
                   key={size}
                   onClick={() => handleSizeSelect(size)}
-                  className={`size-btn px-3 py-1.5 text-xs font-medium rounded-md border-2 transition-all duration-300 min-w-[36px]
+                  className={`size-btn px-3 py-1.5 text-xs font-medium rounded-lg border-2 transition-all duration-300 min-w-[44px] text-center whitespace-nowrap
                     ${selectedSize === size
-                      ? 'bg-[#ffd740] border-black text-black shadow-md'
+                      ? 'bg-primary border-primary text-primary-foreground shadow-md scale-105'
                       : 'bg-secondary/50 text-secondary-foreground border-border hover:bg-secondary hover:border-primary/50'
                     }`}
                   data-size={size}
