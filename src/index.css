@@ -209,41 +209,6 @@ All colors MUST be HSL.
     animation: shimmer 2s infinite;
   }
 
-  @keyframes logo-shimmer {
-    0% {
-      left: -50%;
-    }
-    50% {
-      left: 120%;
-    }
-    100% {
-      left: 120%;
-    }
-  }
-
-  .animate-logo-shimmer {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-  }
-
-  .animate-logo-shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.5) 50%,
-      transparent 100%
-    );
-    animation: logo-shimmer 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 1;
-  }
 }
 
 /* Hide scrollbar for mobile horizontal scroll */
